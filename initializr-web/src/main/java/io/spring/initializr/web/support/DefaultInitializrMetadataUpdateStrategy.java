@@ -21,9 +21,11 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.spring.initializr.metadata.DefaultMetadataElement;
 import io.spring.initializr.metadata.InitializrMetadata;
+import io.spring.initializr.metadata.InitializrMetadataProvider;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
@@ -46,24 +48,24 @@ public class DefaultInitializrMetadataUpdateStrategy implements InitializrMetada
 		this.restTemplate = restTemplate;
 		this.objectMapper = objectMapper;
 	}
-	@Value("initializr.bootVersions")
-	private List<DefaultMetadataElement> bootVersions;
+
+//	@Autowired
+//	private InitializrMetadataProvider initializrMetadataProvider;
 
 	@Override
 	public InitializrMetadata update(InitializrMetadata current) {
-		String url = current.getConfiguration().getEnv().getSpringBootMetadataUrl();
-//		List<DefaultMetadataElement> bootVersions = fetchSpringBootVersions(url);
+//		List<DefaultMetadataElement> bootVersions = current.getBootVersions().getContent();
 //		bootVersions.remove(0);
 //		bootVersions.remove(0);
 //		bootVersions.remove(0);
 //		bootVersions.remove(0);
-		if (bootVersions != null && !bootVersions.isEmpty()) {
-			if (bootVersions.stream().noneMatch(DefaultMetadataElement::isDefault)) {
-				// No default specified
-				bootVersions.get(0).setDefault(true);
-			}
-			current.updateSpringBootVersions(bootVersions);
-		}
+//		if (bootVersions != null && !bootVersions.isEmpty()) {
+//			if (bootVersions.stream().noneMatch(DefaultMetadataElement::isDefault)) {
+//				// No default specified
+//				bootVersions.get(0).setDefault(true);
+//			}
+//			current.updateSpringBootVersions(bootVersions);
+//		}
 		return current;
 	}
 
