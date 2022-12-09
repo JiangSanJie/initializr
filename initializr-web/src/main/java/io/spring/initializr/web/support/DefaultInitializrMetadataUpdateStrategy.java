@@ -24,6 +24,7 @@ import io.spring.initializr.metadata.InitializrMetadata;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
@@ -45,15 +46,17 @@ public class DefaultInitializrMetadataUpdateStrategy implements InitializrMetada
 		this.restTemplate = restTemplate;
 		this.objectMapper = objectMapper;
 	}
+	@Value("initializr.bootVersions")
+	private List<DefaultMetadataElement> bootVersions;
 
 	@Override
 	public InitializrMetadata update(InitializrMetadata current) {
 		String url = current.getConfiguration().getEnv().getSpringBootMetadataUrl();
-		List<DefaultMetadataElement> bootVersions = fetchSpringBootVersions(url);
-		bootVersions.remove(0);
-		bootVersions.remove(0);
-		bootVersions.remove(0);
-		bootVersions.remove(0);
+//		List<DefaultMetadataElement> bootVersions = fetchSpringBootVersions(url);
+//		bootVersions.remove(0);
+//		bootVersions.remove(0);
+//		bootVersions.remove(0);
+//		bootVersions.remove(0);
 		if (bootVersions != null && !bootVersions.isEmpty()) {
 			if (bootVersions.stream().noneMatch(DefaultMetadataElement::isDefault)) {
 				// No default specified

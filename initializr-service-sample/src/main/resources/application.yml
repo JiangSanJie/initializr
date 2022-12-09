@@ -1,4 +1,14 @@
 initializr:
+  bootVersions:
+    - id: 2.4.0-SNAPSHOT
+      name: 2.4.0 (SNAPSHOT)
+      default: false
+    - id: 2.3.3.BUILD-SNAPSHOT
+      name: 2.3.3 (SNAPSHOT)
+      default: false
+    - id: 2.3.2.RELEASE
+      name: 2.3.2
+      default: true
   dependencies:
     - name: Web
       content:
