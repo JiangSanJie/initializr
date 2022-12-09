@@ -50,6 +50,10 @@ public class DefaultInitializrMetadataUpdateStrategy implements InitializrMetada
 	public InitializrMetadata update(InitializrMetadata current) {
 		String url = current.getConfiguration().getEnv().getSpringBootMetadataUrl();
 		List<DefaultMetadataElement> bootVersions = fetchSpringBootVersions(url);
+		bootVersions.remove(0);
+		bootVersions.remove(0);
+		bootVersions.remove(0);
+		bootVersions.remove(0);
 		if (bootVersions != null && !bootVersions.isEmpty()) {
 			if (bootVersions.stream().noneMatch(DefaultMetadataElement::isDefault)) {
 				// No default specified
